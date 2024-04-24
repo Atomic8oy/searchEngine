@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Tuple, Union
+from typing import List
 from datetime import datetime
 
 from pydantic import BaseModel, field_validator
@@ -19,6 +19,14 @@ class CreateUser(BaseModel):
         if not EMAILREGEXP.match(v):
             raise ValueError(
                 "Invalid Email"
+            )
+        return v
+    
+    @field_validator("name", check_fields=False)
+    def validate_email(cls, v):
+        if len(v) > 45 or len(v) < 3:
+            raise ValueError(
+                "Username must be between 3-45 characters"
             )
         return v
 

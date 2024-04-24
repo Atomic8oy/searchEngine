@@ -1,7 +1,3 @@
-from sqlalchemy import and_, delete
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
 from models.user import CreateUser, UserResponseList
 from db.base import SessionLocal
 from .model import User

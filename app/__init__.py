@@ -1,5 +1,3 @@
-from re import fullmatch
-
 from fastapi import FastAPI, Request, status, HTTPException
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
