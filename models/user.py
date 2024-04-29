@@ -23,7 +23,7 @@ class CreateUser(BaseModel):
         return v
     
     @field_validator("name", check_fields=False)
-    def validate_email(cls, v):
+    def validate_name(cls, v):
         if len(v) > 45 or len(v) < 3:
             raise ValueError(
                 "Username must be between 3-45 characters"
