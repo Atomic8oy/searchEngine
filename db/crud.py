@@ -35,7 +35,11 @@ def searchUser(major:str = None, prov: str = None, city: str = None) -> UserResp
             query = query.filter(User.city == city)
         return query.all()
 
-def deleteUserFromDB(user):
+def deleteUserFromDB(user) -> bool:
     with SessionLocal() as db:
-        db.delete(user)
-        db.commit()
+        try:
+            db.delete(user)
+            db.commit()
+            return True
+        except:
+            return False

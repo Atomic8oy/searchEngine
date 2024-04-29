@@ -48,8 +48,10 @@ def add_user(userInfo: CreateUser) -> UserResponse:
 @app.delete("/delete", status_code=200)
 def delete_user(userID:int) -> dict:
     user = getUser(userID)
-    deleteUserFromDB(user)
-    return {"message": "successful"}
+    if deleteUserFromDB(user):
+        return {"message": "successful"}
+    else:
+        raise HTTPException(status_code=404, detail="Not Found")
 
 @app.exception_handler(RequestValidationError)
 def validation_exception_handler(request: Request, exc: RequestValidationError):
