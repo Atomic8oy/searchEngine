@@ -31,7 +31,7 @@ def get_user(id:int) -> UserResponse:
 @app.get("/search")
 def search(prov: str = None, city:str = None, major:str = None):
     result = searchUser(prov=prov, city=city, major=major)
-    if result is None:
+    if result == []:
         raise HTTPException(status_code=404, detail="Not Found")
     else:
         return result
