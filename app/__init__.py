@@ -16,7 +16,7 @@ app = FastAPI(
 )
 
 @app.get("/")
-def get_root():
+def get_root() -> dict:
     return {"message": "Hello World! This thing is working :D"} 
 
 @app.get("/get_user")
@@ -40,9 +40,6 @@ def search(prov: str = None, city:str = None, major:str = None):
 def add_user(userInfo: CreateUser) -> UserResponse:
     dbUser = addUserToDB(userInfo)
     dbuser = UserResponse.from_orm(dbUser)
-
-    
-
     return dbuser
 
 @app.delete("/delete", status_code=200)
